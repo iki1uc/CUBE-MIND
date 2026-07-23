@@ -2,27 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>9×9 FIX INDEX</title>
+<title>9×9 · QI/IQQ/OCTA · Pipeline 3/6/9/12</title>
+
+<style>
+body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
+h1 { color:#6cf; text-align:center; }
+pre {
+    background:#111;
+    padding:20px;
+    border-left:3px solid #6cf;
+}
+</style>
+
+<script src="9×9.js"></script>
+
 </head>
-<body style="background:#000; color:#0f0; font-family:monospace; padding:40px;">
 
-<h1>9×9 FIX INDEX</h1>
+<body>
 
-<pre id="out"></pre>
+<h1>9×9 · QI/IQQ/OCTA · Pipeline 3/6/9/12</h1>
+
+<pre id="out">Lade…</pre>
 
 <script>
-const out = document.getElementById("out");
-let m = [];
-
-for(let r=0; r<9; r++){
-    let row = [];
-    for(let c=0; c<9; c++){
-        row.push(r*10 + c);
-    }
-    m.push(row);
-}
-
-out.innerText = JSON.stringify(m, null, 2);
+const result = MATRIX9x9.build();
+document.getElementById("out").innerText =
+    JSON.stringify(result, null, 2);
 </script>
 
 </body>
