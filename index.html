@@ -1,80 +1,29 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>CUBE‑MIND – 8‑Matrix</title>
-  <style>
-    body { background:#000; color:#0f0; font-family:monospace; }
-    h1, h2 { margin:0.5rem 0; }
-    pre { border:1px solid #0f0; padding:1rem; margin-bottom:1rem; }
-    button { padding:0.5rem 1rem; margin:1rem 0; }
-  </style>
+<meta charset="UTF-8">
+<title>9×9 FIX INDEX</title>
 </head>
+<body style="background:#000; color:#0f0; font-family:monospace; padding:40px;">
 
-<body>
+<h1>9×9 FIX INDEX</h1>
 
-<h1>CUBE‑MIND</h1>
-<p>Mind‑Matrix aktiv. RUN8 wurde übernommen.</p>
+<pre id="out"></pre>
 
-<h2>2E‑Form</h2>
-<pre id="twoE"></pre>
+<script>
+const out = document.getElementById("out");
+let m = [];
 
-<h2>8‑RESP‑Matrix</h2>
-<pre id="matrix"></pre>
-
-<h2>Letzter Mind‑Block</h2>
-<pre id="last"></pre>
-
-<button id="mind-run">MIND‑RUN</button>
-
-<script type="module">
-  // --- 2E‑Form (du hast selbst gesagt: kein Quadrat, sondern 2E)
-  const TWO_E = {
-    id: "2E",
-    left:  "E1",
-    right: "E2",
-    fuse() {
-      return `CUBE(${this.left}+${this.right})`;
+for(let r=0; r<9; r++){
+    let row = [];
+    for(let c=0; c<9; c++){
+        row.push(r*10 + c);
     }
-  };
+    m.push(row);
+}
 
-  // --- 8‑RESP‑Matrix (CUBE‑MIND)
-  const CUBE_MIND = {
-    id: "CUBE‑MIND",
-    nodes: ["N","S","E","W","UP","DOWN","IN","OUT"],
-    map() {
-      return this.nodes.map(n => `NODE(${n})`);
-    },
-    bind(twoE) {
-      return {
-        id: this.id,
-        fuse: twoE.fuse(),
-        matrix: this.map()
-      };
-    }
-  };
-
-  // --- MIND‑RUN (Mind‑Operator)
-  function MIND_RUN() {
-    const block = CUBE_MIND.bind(TWO_E);
-    return block;
-  }
-
-  // --- UI
-  const twoEEl = document.getElementById("twoE");
-  const matrixEl = document.getElementById("matrix");
-  const lastEl = document.getElementById("last");
-
-  // Initial anzeigen
-  twoEEl.textContent = JSON.stringify(TWO_E, null, 2);
-  matrixEl.textContent = JSON.stringify(CUBE_MIND.map(), null, 2);
-
-  document.getElementById("mind-run").addEventListener("click", () => {
-    const block = MIND_RUN();
-    lastEl.textContent = JSON.stringify(block, null, 2);
-  });
+out.innerText = JSON.stringify(m, null, 2);
 </script>
 
 </body>
 </html>
-
