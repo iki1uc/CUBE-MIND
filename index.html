@@ -1,34 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>9×9 · QI/IQQ/OCTA · Pipeline 3/6/9/12</title>
+<title>CUBE‑MIND · 12e · 6E/6D · QI/IQQ/OCTA</title>
 
 <style>
 body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
-h1 { color:#6cf; text-align:center; }
-pre {
-    background:#111;
-    padding:20px;
-    border-left:3px solid #6cf;
-}
+nav a { color:#6cf; margin-right:20px; text-decoration:none; font-size:20px; }
+.box { background:#111; padding:20px; margin:20px 0; border-left:3px solid #6cf; display:none; }
+pre { white-space:pre; }
+h2 { color:#6cf; }
 </style>
 
-<script src="9×9.js"></script>
+<!-- CUBE-MIND ENGINE -->
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/9×9.js"></script>
+
+<!-- GEO + EFFECT -->
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/GEO.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/EFFECT.js"></script>
+
+<!-- PIPELINE -->
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/QI.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/IQQ.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/OCTA.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/iki1uc/CUBE-MIND/12e.js"></script>
 
 </head>
 
 <body>
 
-<h1>9×9 · QI/IQQ/OCTA · Pipeline 3/6/9/12</h1>
+<h1>CUBE‑MIND · 12e · 6E/6D · QI/IQQ/OCTA</h1>
 
-<pre id="out">Lade…</pre>
+<nav>
+    <a onclick="show('cube')">CUBE</a>
+    <a onclick="show('qi')">QI</a>
+    <a onclick="show('iqq')">IQQ</a>
+    <a onclick="show('octa')">OCTA</a>
+    <a onclick="show('e12')">12e</a>
+    <a onclick="show('geo')">GEO</a>
+    <a onclick="show('eff')">Effekte</a>
+    <a onclick="show('pipe')">Pipeline</a>
+</nav>
+
+<div id="cube" class="box"></div>
+<div id="qi" class="box"></div>
+<div id="iqq" class="box"></div>
+<div id="octa" class="box"></div>
+<div id="e12" class="box"></div>
+<div id="geo" class="box"></div>
+<div id="eff" class="box"></div>
+<div id="pipe" class="box"></div>
 
 <script>
-const result = MATRIX9x9.build();
-document.getElementById("out").innerText =
-    JSON.stringify(result, null, 2);
-</script>
+function show(id){
+    document.querySelectorAll('.box').forEach(b => b.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
 
-</body>
-</html>
+(async () => {
+
+    document.getElementById("cube").innerHTML =
+        "<h2>CUBE‑MIND</h2><pre>" + JSON.stringify(CUBE_MIND.start
