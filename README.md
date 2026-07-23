@@ -1,28 +1,21 @@
-# ANKER – Stabilisationsachse · iki1uc
+# 9×9 · QI/IQQ/OCTA · Pipeline 3/6/9/12
 
-## Zweck
-ANKER ist die Stabilisationsachse des iki1uc‑Systems.
-Es hält die Achsen IQ, QI, EVO, UPD, UPG, BIOS und CALC im korrekten Verhältnis.
+Diese Station ist die reine Master-Schaltung für das gesamte iki1uc-System.
 
-## Struktur
-- NAME: ANKER
-- ID: A01
-- Station: S01
-- Dimension: D4
-- Modus: erabel (neutral, operation möglich)
+──────────────────────────────────────────────
+## Inhalte
 
-## Rolle
-ANKER stabilisiert, ohne selbst aktiv zu berechnen oder zu steuern.
-Es ist die neutrale Achse zwischen AXI, 6d und API.
+- QI – Index-Schaltung
+- IQQ – 3-Zustands-Schaltung
+- OCTA – 8-Wege-Intelligenz
+- Pipeline 3 – tri-routing
+- Pipeline 6 – hex-routing
+- Pipeline 9 – non-routing
+- Pipeline 12 – dodeca-routing
 
-## Bindungen
-- AXI
-- 6d
-- 360
-- 100
-- 213 (REAL)
-- API
+──────────────────────────────────────────────
+## Dateien
 
-## Status
-STATE = STABIL  
-READY = 100%
+- 9×9.js – Masterengine
+- id.html – Stempel
+- index.html – Anzeige
