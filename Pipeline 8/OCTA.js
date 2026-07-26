@@ -1,9 +1,3 @@
-window.OCTA = {
-    start(){
-        return {
-            level: 9,
-            flow: "OCTA Cube-Flow",
-            stamp: Date.now()
-        };
-    }
-};
+export function OCTA() {
+  return { octa: "OCTA-PIPELINE-8", status: "OK" };
+}
