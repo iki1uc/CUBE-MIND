@@ -5,14 +5,23 @@ export const CONNECT = {
   wloch: "WLOCH-ROUTE",
   allxall: "ALLXALL-CONNECT",
 
-  link(room, pipe) {
+  scanRoom(room) {
     return {
       room,
+      via: this.wloch,
+      mode: this.allxall,
+      status: "ROOM-SCAN-OK"
+    };
+  },
+
+  mapPipe(pipe) {
+    return {
       pipe,
-      via: "LAN/WLAN",
+      link: "LAN/WLAN",
+      gate: this.gate,
       route: this.wloch,
-      mode: this.allxall
+      mode: this.allxall,
+      status: "PIPE-MAP-OK"
     };
   }
 };
-
