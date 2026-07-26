@@ -1,5 +1,5 @@
 export const SYNC = {
-  delay: 120, // Millisekunden
+  delay: 150,
 
   slow(fn) {
     return new Promise(resolve => {
@@ -7,4 +7,3 @@ export const SYNC = {
     });
   }
 };
-
