@@ -2,14 +2,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CUBE-MIND · MASTER · Pipeline 3/6/8/9/12</title>
+<title>CUBE-MIND · MIND-DASHBOARD</title>
+<style>
+body { font-family: Arial; background:#111; color:#eee; }
+h1 { color:#6cf; }
+.section { margin-bottom:20px; padding:10px; border:1px solid #333; }
+</style>
 </head>
 <body>
 
-<h1>CUBE-MIND · ALLXALL-MASTER</h1>
-<p>MASTER · PIPELINE · RAUM · EFFEKT</p>
+<h1>CUBE-MIND · MIND-DASHBOARD</h1>
 
-<button onclick="runAll()">NEUE LAGE STARTEN</button>
+<div class="section">
+  <h2>ID</h2>
+  <p>MIND-ID: CUBE-MIND-01</p>
+</div>
+
+<div class="section">
+  <h2>MASTER</h2>
+  <button onclick="runMaster()">MASTER START</button>
+  <pre id="masterOut"></pre>
+</div>
+
+<div class="section">
+  <h2>PIPELINE 3/6/8/9/12</h2>
+  <button onclick="runPipeline()">Pipeline ausführen</button>
+  <pre id="pipeOut"></pre>
+</div>
+
+<div class="section">
+  <h2>RAUM</h2>
+  <button onclick="runRaum()">Raum laden</button>
+  <pre id="raumOut"></pre>
+</div>
+
+<div class="section">
+  <h2>EFFEKT</h2>
+  <button onclick="runEffekt()">Effekt anwenden</button>
+  <pre id="effOut"></pre>
+</div>
 
 <script type="module">
 import { CUBEMIND } from "./MASTER/CUBE_MIND.js";
@@ -21,17 +52,31 @@ import { PIPE12 } from "./Pipeline 12/12e.js";
 import { GEO } from "./Raum/GEO.js";
 import { EFFECT } from "./Effekt/EFFECT.js";
 
-window.runAll = () => {
+window.runMaster = () => {
+  document.getElementById("masterOut").innerText =
+    JSON.stringify(CUBEMIND, null, 2);
+};
 
-  console.log("MASTER:", CUBEMIND);
-  console.log("QI:", QI());
-  console.log("IQQ:", IQQ());
-  console.log("OCTA:", OCTA());
-  console.log("9×9:", GRID9());
-  console.log("12e:", PIPE12());
-  console.log("GEO:", GEO());
-  console.log("EFFECT:", EFFECT());
+window.runPipeline = () => {
+  const out = {
+    QI: QI(),
+    IQQ: IQQ(),
+    OCTA: OCTA(),
+    GRID9: GRID9(),
+    PIPE12: PIPE12()
+  };
+  document.getElementById("pipeOut").innerText =
+    JSON.stringify(out, null, 2);
+};
 
+window.runRaum = () => {
+  document.getElementById("raumOut").innerText =
+    JSON.stringify(GEO(), null, 2);
+};
+
+window.runEffekt = () => {
+  document.getElementById("effOut").innerText =
+    JSON.stringify(EFFECT(), null, 2);
 };
 </script>
 
