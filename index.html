@@ -18,17 +18,22 @@ button:hover { background:#9ef; }
 
 <div class="section">
   <h2>QI (Pipeline 3)</h2>
-  <pre id="qiOut">QI wird geladen…</pre>
+  <pre id="qiOut">QI wartet…</pre>
 </div>
 
 <div class="section">
   <h2>IQQ (Pipeline 6)</h2>
-  <pre id="iqqOut">IQQ wird geladen…</pre>
+  <pre id="iqqOut">IQQ wartet…</pre>
+</div>
+
+<div class="section">
+  <h2>OCTA (Pipeline 8)</h2>
+  <pre id="octaOut">OCTA wartet…</pre>
 </div>
 
 <div class="section">
   <h2>CONNECT · LAN · WLAN · WLOCH · ALLXALL</h2>
-  <pre id="connectOut">CONNECT wird geladen…</pre>
+  <pre id="connectOut">CONNECT wartet…</pre>
 </div>
 
 <div class="section">
@@ -41,32 +46,37 @@ button:hover { background:#9ef; }
 <script type="module">
 import { QI } from "./Pipeline 3/QI.js";
 import { IQQ } from "./Pipeline 6/IQQ.js";
+import { OCTA } from "./Pipeline 8/OCTA.js";
 import { CONNECT } from "./CONNECT/CONNECT.js";
 import { SYNC } from "./SYNC/SYNC.js";
 
 window.startShow = async () => {
 
-  // SYNC aktiv anzeigen
   document.getElementById("syncOut").innerText =
-    "SYNC.delay = " + SYNC.delay + "ms (Pipeline verlangsamt)";
+    "SYNC.delay = " + SYNC.delay + "ms";
 
-  // QI langsam ausführen
+  // QI
   const qi = await SYNC.slow(() => QI());
-  const linkQI = CONNECT.link("C.room", "QI");
-
+  const linkQI = CONNECT.mapPipe("QI");
   document.getElementById("qiOut").innerText =
     JSON.stringify({ qi, linkQI }, null, 2);
 
-  // IQQ langsam ausführen
+  // IQQ
   const iqq = await SYNC.slow(() => IQQ());
-  const linkIQQ = CONNECT.link("C.room", "IQQ");
-
+  const linkIQQ = CONNECT.mapPipe("IQQ");
   document.getElementById("iqqOut").innerText =
     JSON.stringify({ iqq, linkIQQ }, null, 2);
 
-  // CONNECT anzeigen
+  // OCTA
+  const octa = await SYNC.slow(() => OCTA());
+  const linkOCTA = CONNECT.mapPipe("OCTA");
+  document.getElementById("octaOut").innerText =
+    JSON.stringify({ octa, linkOCTA }, null, 2);
+
+  // CONNECT
+  const roomScan = CONNECT.scanRoom("C.room");
   document.getElementById("connectOut").innerText =
-    JSON.stringify(CONNECT, null, 2);
+    JSON.stringify(roomScan, null, 2);
 };
 </script>
 
